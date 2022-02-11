@@ -2,25 +2,24 @@
   message(paste(alias, "is not a recognized database connection."))
   message("Setting it up...")
 
-  drv <- readline("drv=")
-
   args <- .parse_connection_args()
 
-  if (!.confirm_connection_args(drv, args)) {
+  if (!.confirm_connection_args(args)) {
     return(FALSE)
   }
 
-  args <- c(list(drv = parse(text = drv)), args)
 
   return(args)
 }
 
 .parse_connection_args <- function() {
+  drv <- readline("drv=")
+
   message("Add all other arguments in key=value form (i.e. `UID=doe`, without")
   message("spaces around the `=`).")
   message("Add an empty line when done.")
 
-  args <- list()
+  args <- list(drv = drv)
   while (TRUE) {
     arg <- readline()
 
