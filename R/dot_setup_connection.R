@@ -71,7 +71,11 @@
     }
   }
 
-  return(answer == "y")
+  success <- answer == "y"
+
+  if (!success) message("Setup aborted.")
+
+  return(success)
 }
 
 .save_connection_data <- function() {
