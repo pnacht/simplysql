@@ -1,4 +1,4 @@
-.setup_connection <- function(alias) {
+.setup_connection <- function(alias, package_id) {
   message(paste(alias, "is not a recognized database connection."))
   message("Setting it up...")
 
@@ -8,8 +8,9 @@
     return(FALSE)
   }
 
+  .save_connection_data(alias, package_id, args)
 
-  return(args)
+  return(TRUE)
 }
 
 .parse_connection_args <- function() {
