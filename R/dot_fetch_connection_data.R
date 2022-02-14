@@ -10,9 +10,6 @@
   args <- sapply(keys, function(x) keyring::key_get(full_alias, x),
                  simplify = FALSE)
 
-  # $args is just a list of necessary argument names, no longer necessary
-  args$args <- NULL
-
   # convert $drv to an expression
   args$drv <- eval(parse(text = args$drv))
 
