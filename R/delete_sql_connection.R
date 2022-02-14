@@ -1,5 +1,4 @@
 delete_sql_connection <- function(alias) {
-  sep        <- "___"
   package_id <- "r___simplysql___"
 
   full_alias <- paste0(package_id, alias)
