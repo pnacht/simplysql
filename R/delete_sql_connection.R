@@ -1,3 +1,16 @@
+#' Delete a known SQL connection
+#'
+#' @inheritParams start_sql_connection
+#'
+#' @description
+#' Function to delete a known SQL connection from your credential store.
+#'
+#' If the given alias does not exist, an error is thrown.
+#'
+#' @family connection management functions
+#'
+#' @importFrom keyring key_delete key_list
+#' @export
 delete_sql_connection <- function(alias) {
   package_id <- "r___simplysql___"
 
