@@ -1,3 +1,4 @@
+#' @importFrom rlang call_args
 .setup_connection <- function(alias, package_id) {
   message(paste(alias, "is not a recognized database connection."))
   message("Setting it up...")

@@ -1,3 +1,4 @@
+#' @importFrom keyring key_list
 .fetch_connection_keys <- function(alias, package_id) {
   full_alias <- paste0(package_id, alias)
 

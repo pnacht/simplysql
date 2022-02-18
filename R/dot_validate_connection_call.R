@@ -1,3 +1,6 @@
+#' @importFrom assertthat assert_that
+#' @importFrom DBI dbConnect
+#' @importFrom rlang call_fn is_call_simple
 .validate_connection_call <- function(expr) {
   assertthat::assert_that(
     rlang::is_call_simple(expr, ns = TRUE),

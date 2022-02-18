@@ -1,15 +1,16 @@
 Package: simplysql
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Simple, secure DSN-like SQL connectivity
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Pedro Kaj Kjellerup Nacht
+Maintainer: Pedro Kaj Kjellerup Nacht <pedro.k.night@gmail.com>
+Description: Simplifies SQL connectivity by generating a faux-DSN with secure
+    credentials, performing all connection management in the background.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
     mockery
 Config/testthat/edition: 3
+RoxygenNote: 7.1.2

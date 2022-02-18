@@ -1,3 +1,4 @@
+#' @importFrom keyring key_get
 .fetch_connection_data <- function(alias, package_id) {
   full_alias <- paste0(package_id, alias)
 
@@ -18,6 +19,7 @@
   return(args)
 }
 
+#' @importFrom stringr str_match
 .set_connection_data_type <- function(args) {
   # set type
   convert <- function(value, type) {

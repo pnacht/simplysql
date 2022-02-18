@@ -1,3 +1,5 @@
+#' @importFrom glue glue
+#' @importFrom keyring key_set_with_value
 .save_connection_data <- function(alias, package_id, args) {
   alias <- paste0(package_id, alias)
 

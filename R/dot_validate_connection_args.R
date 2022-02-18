@@ -1,3 +1,5 @@
+#' @importFrom assertthat assert_that
+#' @importFrom rlang is_call_simple
 .validate_connection_args <- function(args) {
   names <- names(args)
 
