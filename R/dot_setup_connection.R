@@ -5,7 +5,7 @@
   expr <- .read_connection_expr()
   .validate_connection_call(expr)
 
-  args <- .parse_connection_args(expr)
+  args <- rlang::call_args(expr)
   .validate_connection_args(args)
 
   .save_connection_data(alias, package_id, args)
