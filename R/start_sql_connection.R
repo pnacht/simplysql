@@ -23,15 +23,12 @@
 #' @importFrom keyring key_get
 #' @export
 start_sql_connection <- function(alias) {
-  sep          <- "___"
   package_id <- "r___simplysql___"
-
-  .validate_alias(alias, sep)
 
   args <- .fetch_connection_data(alias, package_id)
 
   if (is.null(args)) {
-    return(invisible(NULL))
+    return(invisible(NULL))  # user aborted connection setup
   }
 
   connection_pool <- do.call(pool::dbPool, args)
@@ -39,10 +36,4 @@ start_sql_connection <- function(alias) {
   reg.finalizer(connection_pool, pool::poolClose, onexit = TRUE)
 
   return(connection_pool)
-}
-
-.validate_alias <- function(alias, sep) {
-  if (grepl(sep, alias)) {
-    stop(paste0("alias must not contain the reserved substring '", sep, "'"))
-  }
 }
