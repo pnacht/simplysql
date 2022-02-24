@@ -1,4 +1,6 @@
 #' @importFrom assertthat assert_that
+#' @importFrom DBI dbConnect dbDisconnect
+#' @importFrom glue glue
 #' @importFrom rlang is_call_simple
 .validate_connection_args <- function(args) {
   names <- names(args)
@@ -19,4 +21,23 @@
                 "(i.e. `drv = odbc::odbc()`, `drv = RSQLite::SQLite()`, etc)",
                 sep = "\n  ")
   )
+
+  # see if DBI::dbConnect successfully creates a connection with the given
+  # arguments.
+  conn <- tryCatch(
+    do.call(DBI::dbConnect, args),
+    error = function(e) {
+      arg_str = paste(
+        glue::glue("      { names(args) } = { args }"),
+        collapse = ",\n"
+      )
+      stop(paste(
+        sep = "\n",
+        "Failed to establish a connection with given arguments. Please confirm",
+        "the following expression can create the desired connection:",
+        "  DBI::dbConnect(",
+        arg_str,
+        "  )"))
+    })
+  DBI::dbDisconnect(conn)
 }
