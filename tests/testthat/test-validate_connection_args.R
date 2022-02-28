@@ -1,3 +1,7 @@
+# skip the actual connection attempt
+mockery::stub(.validate_connection_args, "DBI::dbConnect", NULL)
+mockery::stub(.validate_connection_args, "DBI::dbDisconnect", NULL)
+
 test_that("DBI::dbConnect() calls with named args and with valid `drv` succeed", {
   # fully namespaced call to `DBI::dbConnect`
   expr <- list(
