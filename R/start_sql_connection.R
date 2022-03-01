@@ -54,7 +54,7 @@ start_sql_connection <- function(alias) {
   reg.finalizer(connection_pool, pool::poolClose, onexit = TRUE)
 
   options(
-    simplysql.default_connection_pool = connection_pool
+    simplysql.connection_pool = connection_pool
   )
 
   return(connection_pool)
