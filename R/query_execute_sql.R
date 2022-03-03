@@ -4,8 +4,6 @@
 #' @inheritDotParams write_sql
 #' @param .verbose Whether to display the resulting SQL call, useful during
 #'   development.
-#' @param .con the SQL connection to the database. If `NULL`, uses the
-#'   connection defined by calling [start_sql_connection()].
 #'
 #' @details
 #' See [write_sql()] to see how `...` parameters must be defined.
@@ -40,14 +38,12 @@
 query_sql <- function(.sql,
                       ...,
                       .envir = parent.frame(),
-                      .verbose = FALSE,
-                      .con = NULL) {
+                      .verbose = FALSE) {
   df <- .run_sql_statement(DBI::dbGetQuery,
                            .sql,
                            ...,
                            .envir = .envir,
-                           .verbose = .verbose,
-                           .con = .con)
+                           .verbose = .verbose)
 
   return(df)
 }
@@ -56,14 +52,12 @@ query_sql <- function(.sql,
 execute_sql <- function(.sql,
                         ...,
                         .envir = parent.frame(),
-                        .verbose = FALSE,
-                        .con = NULL) {
+                        .verbose = FALSE) {
   nrows <- .run_sql_statement(DBI::dbExecute,
                               .sql,
                               ...,
                               .envir = .envir,
-                              .verbose = .verbose,
-                              .con = .con)
+                              .verbose = .verbose)
 
   return(nrows)
 }

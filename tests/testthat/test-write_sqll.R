@@ -1,9 +1,4 @@
-conn <- DBI::dbConnect(
-    drv = RSQLite::SQLite(),
-    dbname = ":memory:"
-  )
-
-mockery::stub(write_sql, ".get_default_connection_pool", conn)
+setup_connection()
 
 test_that("write_sql works for non-parametric strings", {
   expect_equal(

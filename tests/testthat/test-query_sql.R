@@ -1,8 +1,8 @@
-conn <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+conn <- setup_connection()
 
 test_that("Tableless queries work", {
   expect_equal(
-    query_sql("SELECT 1 AS x", .con = conn)
+    query_sql("SELECT 1 AS x")
     , data.frame(x = 1))
 })
 
@@ -13,9 +13,7 @@ test_that("Standard queries work", {
     query_sql("
       SELECT Species
       FROM iris
-      LIMIT 1", .con = conn),
+      LIMIT 1"),
     data.frame(Species = "setosa")
   )
 })
-
-DBI::dbDisconnect(conn)

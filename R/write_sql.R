@@ -3,8 +3,6 @@
 #' @param .sql string containing the parametric SQL expression.
 #' @param .envir environment in which to lookup parametric values not found in
 #'   `...`. By default, looks at the current calling environment.
-#' @param  .con the SQL connection to use to define the necessary SQL-escaping.
-#'   If `NULL`, uses the connection defined by calling [start_sql_connection()].
 #' @inheritDotParams glue::glue_data_sql
 #' @inheritDotParams glue::glue_data -.sep -.transformer
 #'
@@ -107,9 +105,8 @@
 #' @export
 write_sql <- function(.sql,
                       ...,
-                      .envir = parent.frame(),
-                      .con = NULL) {
-  if (is.null(.con)) .con <- .get_default_connection_pool()
+                      .envir = parent.frame()) {
+  .con <- .get_connection()
 
   dots <- list(...)
 
