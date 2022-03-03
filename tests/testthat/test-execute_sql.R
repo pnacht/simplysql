@@ -1,7 +1,8 @@
-conn <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
-DBI::dbWriteTable(conn, "iris", iris)
+conn <- setup_connection()
 
 test_that("execute_sql works", {
+  DBI::dbWriteTable(conn, "iris", iris)
+
   nrows <- nrow(iris[iris$Species == "setosa", ])
 
   expect_equal(
@@ -9,8 +10,6 @@ test_that("execute_sql works", {
       UPDATE iris
       SET Species = 'a'
       WHERE Species = 'setosa'
-                ", .con = conn)
+                ")
     , nrows)
 })
-
-DBI::dbDisconnect(conn)

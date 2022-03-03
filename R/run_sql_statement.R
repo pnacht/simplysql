@@ -1,14 +1,11 @@
-.run_sql_statement <- function(.fun,
+.run_sql_statement <- function(.dbi_fun,
                                .sql,
                                ...,
                                .envir = parent.frame(),
-                               .verbose = FALSE,
-                               .con = NULL) {
-  if (is.null(.con)) .con <- .get_default_connection_pool()
-
-  .sql <- write_sql(.sql, ..., .envir = .envir, .con = .con)
+                               .verbose = FALSE) {
+  .sql <- write_sql(.sql, ..., .envir = .envir)
 
   if (.verbose) message(.sql)
 
-  return(.fun(.con, .sql))
+  return(.dbi_fun(.get_connection(), .sql))
 }
