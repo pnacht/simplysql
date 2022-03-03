@@ -1,5 +1,5 @@
 #' @importFrom assertthat assert_that
-#' @importFrom DBI dbConnect dbDisconnect
+#' @importFrom DBI dbCanConnect
 #' @importFrom glue glue
 #' @importFrom rlang is_call_simple
 .validate_connection_args <- function(args) {
@@ -22,22 +22,9 @@
                 sep = "\n  ")
   )
 
-  # see if DBI::dbConnect successfully creates a connection with the given
-  # arguments.
-  conn <- tryCatch(
-    do.call(DBI::dbConnect, args),
-    error = function(e) {
-      arg_str = paste(
-        glue::glue("      { names(args) } = { args }"),
-        collapse = ",\n"
-      )
-      stop(paste(
-        sep = "\n",
-        "Failed to establish a connection with given arguments. Please confirm",
-        "the following expression can create the desired connection:",
-        "  DBI::dbConnect(",
-        arg_str,
-        "  )"))
-    })
-  DBI::dbDisconnect(conn)
+  is_valid <- do.call(DBI::dbCanConnect, args)
+  assertthat::assert_that(
+    is_valid,
+    msg = attr(is_valid, "reason")
+  )
 }
