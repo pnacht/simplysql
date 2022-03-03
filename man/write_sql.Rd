@@ -4,7 +4,7 @@
 \alias{write_sql}
 \title{Create a safe SQL expression via parametric string interpolation}
 \usage{
-write_sql(.sql, ..., .envir = parent.frame(), .con = NULL)
+write_sql(.sql, ..., .envir = parent.frame())
 }
 \arguments{
 \item{.sql}{string containing the parametric SQL expression.}
@@ -12,6 +12,8 @@ write_sql(.sql, ..., .envir = parent.frame(), .con = NULL)
 \item{...}{
   Arguments passed on to \code{\link[glue:glue_sql]{glue::glue_data_sql}}, \code{\link[glue:glue]{glue::glue_data}}
   \describe{
+    \item{\code{.con}}{[\code{DBIConnection}]: A DBI connection object obtained from
+\code{\link[DBI:dbConnect]{DBI::dbConnect()}}.}
     \item{\code{.na}}{[\code{character(1)}: \code{DBI::SQL("NULL")}]\cr Value to replace
 \code{NA} values with. If \code{NULL} missing values are propagated, that is an \code{NA}
 result will cause \code{NA} output. Otherwise the value is replaced by the
@@ -38,9 +40,6 @@ template with \code{\link[glue:trim]{trim()}} or not.}
 
 \item{.envir}{environment in which to lookup parametric values not found in
 \code{...}. By default, looks at the current calling environment.}
-
-\item{.con}{the SQL connection to use to define the necessary SQL-escaping.
-If \code{NULL}, uses the connection defined by calling \code{\link[=start_sql_connection]{start_sql_connection()}}.}
 }
 \value{
 A safe SQL string, with all parametric values properly handled
