@@ -16,6 +16,16 @@ list_sql_table_fields(name, ...)
 list_sql_objects(prefix = NULL, ...)
 }
 \arguments{
+\item{name}{The table name, passed on to \code{\link[DBI:dbQuoteIdentifier]{dbQuoteIdentifier()}}. Options are:
+\itemize{
+\item a character string with the unquoted DBMS table name,
+e.g. \code{"table_name"},
+\item a call to \code{\link[DBI:Id]{Id()}} with components to the fully qualified table name,
+e.g. \code{Id(schema = "my_schema", table = "table_name")}
+\item a call to \code{\link[DBI:SQL]{SQL()}} with the quoted and fully qualified table name
+given verbatim, e.g. \code{SQL('"my_schema"."table_name"')}
+}}
+
 \item{...}{Other parameters passed on to methods.}
 
 \item{prefix}{A fully qualified path in the database's namespace, or \code{NULL}.

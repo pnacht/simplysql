@@ -8,6 +8,7 @@
 #' - `list_sql_table_fields()` wraps [DBI::dbListFields()]
 #' - `list_sql_objects()` wraps [DBI::dbListObjects()]
 #'
+#' @inheritParams DBI::dbExistsTable
 #' @inheritParams DBI::dbListObjects
 #'
 #' @details

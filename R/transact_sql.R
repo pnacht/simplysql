@@ -27,6 +27,7 @@
 #' @returns Returns the value returned by `fun()`, or `NULL` if `break_sql()`
 #' was called.
 #'
+#' @importFrom DBI dbBegin dbCommit dbRollback
 #' @export
 transact_sql <- function(fun, ...) {
   .con <- .checkout_transaction_connection()
@@ -36,7 +37,7 @@ transact_sql <- function(fun, ...) {
   commit <- TRUE
   x <- tryCatch(
     fun(...),
-    error     = function(e) {
+    error = function(e) {
       DBI::dbRollback(.con)
       stop(e)
     },
@@ -53,10 +54,13 @@ transact_sql <- function(fun, ...) {
 }
 
 #' @rdname transact_sql
-#' @importFrom  DBI dbBreak
+#' @importFrom DBI dbBreak
+#'
 #' @export
 break_sql <- function() DBI::dbBreak()
 
+#' @importFrom pool poolCheckout poolReturn
+#' @importFrom withr defer_parent
 .checkout_transaction_connection <- function() {
   .con <- .get_connection()
   .con <- pool::poolCheckout(.con)

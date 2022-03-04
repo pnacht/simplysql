@@ -14,14 +14,13 @@ write_sql(.sql, ..., .envir = parent.frame())
   \describe{
     \item{\code{.con}}{[\code{DBIConnection}]: A DBI connection object obtained from
 \code{\link[DBI:dbConnect]{DBI::dbConnect()}}.}
-    \item{\code{.na}}{[\code{character(1)}: \code{DBI::SQL("NULL")}]\cr Value to replace
-\code{NA} values with. If \code{NULL} missing values are propagated, that is an \code{NA}
-result will cause \code{NA} output. Otherwise the value is replaced by the
-value of \code{.na}.}
+    \item{\code{.na}}{[\code{character(1)}: \sQuote{NA}]\cr Value to replace \code{NA} values
+with. If \code{NULL} missing values are propagated, that is an \code{NA} result will
+cause \code{NA} output. Otherwise the value is replaced by the value of \code{.na}.}
     \item{\code{.x}}{[\code{listish}]\cr An environment, list, or data frame used to lookup values.}
-    \item{\code{.open}}{[\code{character(1)}: \sQuote{\\{}]\cr The opening delimiter. Doubling the
+    \item{\code{.open}}{[\code{character(1)}: \sQuote{\\\{}]\cr The opening delimiter. Doubling the
 full delimiter escapes it.}
-    \item{\code{.close}}{[\code{character(1)}: \sQuote{\\}}]\cr The closing delimiter. Doubling the
+    \item{\code{.close}}{[\code{character(1)}: \sQuote{\\\}}]\cr The closing delimiter. Doubling the
 full delimiter escapes it.}
     \item{\code{.null}}{[\code{character(1)}: \sQuote{character()}]\cr Value to replace
 NULL values with. If \code{character()} whole output is \code{character()}. If

@@ -1,3 +1,14 @@
+# Due to a roxygen2 bug (https://github.com/r-lib/roxygen2/issues/1301), the .Rd
+# file for write_sql() must be manually adjusted. Compile it via roxygen2 as
+# usual, but then find the `.open` and `.close` arguments imported from
+# glue::glue_data. These will contain \sQuote{\\{}] and \sQuote{\\}},
+# respectively. However, there should in fact be three backslashes.
+#
+# Prior to building the package, make sure to add the missing backslash to each
+# argument description. Otherwise the build will throw a warning and the
+# documentation will be jumbled.
+
+
 #' Create a safe SQL expression via parametric string interpolation
 #'
 #' @param .sql string containing the parametric SQL expression.
