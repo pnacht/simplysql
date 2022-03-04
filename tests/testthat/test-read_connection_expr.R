@@ -9,35 +9,31 @@ mock_input <- function(x) {
 test_that("Valid calls with all named arguments are accepted", {
   input <- list(
     "DBI::dbConnect(",
-    "drv      = odbc::odbc(),",
-    "Driver   = \"SQL Server\",",
-    "Port     = 1433)"
+    "drv    = RSQLite::SQLite(),",
+    "dbname = \":memory:\")"
   )
 
   expect_identical(mock_input(input), quote(
     DBI::dbConnect(
-      drv    = odbc::odbc(),
-      Driver = "SQL Server",
-      Port   = 1433
-    )
+      drv    = RSQLite::SQLite(),
+      dbname = ":memory:")
   ))
 })
 
 test_that("Invalid calls or expressions fail", {
   input <- list(  # no closing parenthesis
     "DBI::dbConnect(",
-    "drv      = odbc::odbc(),",
-    "Driver   = \"SQL Server\",",
-    "Port     = 1433"
+    "drv    = RSQLite::SQLite(),",
+    "dbname = \":memory:\""
   )
 
   expect_error(mock_input(input))
 
   input <- list(  # expression, not simple call
     "DBI::dbConnect(",
-    "drv      = odbc::odbc(),",
+    "drv      = RSQLite::SQLite(),",
     "Driver   = \"SQL Server\",",
-    "Port     = 1433); { print(1) }"
+    "dbname = \":memory:\"); { print(1) }"
   )
 
   expect_error(mock_input(input))
