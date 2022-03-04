@@ -1,4 +1,4 @@
-conn <- setup_connection()
+setup_connection()
 
 test_that("successful transactions are committed, transact_sql returns fun()", {
   fun <- function() {
