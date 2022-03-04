@@ -1,12 +1,12 @@
+#' @importFrom rlang call_args
 .setup_connection <- function(alias, package_id) {
   message(paste(alias, "is not a recognized database connection."))
   message("Setting it up...")
 
-  args <- .parse_connection_args()
+  expr <- .read_connection_expr()
+  .validate_connection_call(expr)
 
-  if (!.confirm_connection_args(args)) {
-    return(FALSE)
-  }
+  args <- rlang::call_args(expr)
 
   .save_connection_data(alias, package_id, args)
 
