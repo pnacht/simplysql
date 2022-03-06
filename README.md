@@ -49,7 +49,7 @@ my_species <- "setosa"
 query_sql("
   SELECT TOP 2 *
   FROM iris
-  WHERE species = { species }
+  WHERE species = { my_species }
 ")
 #>    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 #> 1           5.1         3.5          1.4         0.2  setosa
