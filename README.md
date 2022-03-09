@@ -108,3 +108,4 @@ And you're done. The `DBI::dbConnect()` call will be dissected and all of the ne
 If interactive setup isn't a good fit for your use-case (remote deploy, setup when the container boots up, etc), then simply use `setup_sql_connection()`, which expects an alias and the arguments you'd otherwise pass to `DBI::dbConnect()`. You'll then need to call `start_sql_connection()` to actually make the connection.
 
 test
+test
