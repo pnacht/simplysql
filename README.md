@@ -4,6 +4,8 @@
 [![R-CMD-check](https://github.com/pnacht/simplysql/workflows/R-CMD-check/badge.svg)](https://github.com/pnacht/simplysql/actions)
 <!-- badges: end -->
 
+
+
 ## Overview
 
 `simplysql` securely and easily handles connectivity to a SQL database via a "faux-DSN". Give a connection an alias and then never worry about its connection details again. This includes remembering to disconnect and refreshing stale connections.
