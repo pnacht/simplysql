@@ -12,7 +12,7 @@
 
 SQL statements are also protected from SQL injection via string interpolation.
 
-## Installation steps
+## Installation steps bla
 
 ``` r
 # Install development version from GitHub
