@@ -1,5 +1,6 @@
 on:
   push:
+  pull_request_target:
 
 env:
   A: 1
@@ -11,3 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ env }}
+      - run: echo ${{ github.event.pull_request.title }}
